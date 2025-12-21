@@ -15,8 +15,9 @@ public class CurrencyController {
 
     private final CurrencyService service;
 
-    public CurrencyController(CurrencyService service) {
-        this.service = service;
+    @GetMapping("/")
+    public String home() {
+        return "Currency Converter API is running 🚀";
     }
 
     @GetMapping("/convert")
