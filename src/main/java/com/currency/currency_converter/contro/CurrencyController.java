@@ -1,19 +1,20 @@
 package com.currency.currency_converter.contro;
 
-import com.currency.currency_converter.serv.CurrencyService;
+import java.util.Map;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Map;
+import com.currency.currency_converter.serv.CurrencyService;
+
 
 @CrossOrigin(origins = "*") 
 @RestController
 public class CurrencyController {
 
-    private final CurrencyService service;
+    private final CurrencyService service = new CurrencyService();
 
     @GetMapping("/")
     public String home() {
