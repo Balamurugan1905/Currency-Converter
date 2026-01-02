@@ -1,5 +1,6 @@
 package com.currency.currency_converter.serv;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
@@ -10,13 +11,15 @@ import java.util.Map;
 @Service
 public class CurrencyService {
 
-    private static final String API_KEY = "0a8ae2b0f5263684933f61c1"; // Put your key
+    @Value("${exchange.api.key}")
+    private String apiKey;
+
     private static final String API_TEMPLATE = "https://v6.exchangerate-api.com/v6/%s/latest/%s";
 
     public double convert(String from, String to, double amount) {
 
         RestTemplate rest = new RestTemplate();
-        String url = String.format(API_TEMPLATE, API_KEY, from);
+        String url = String.format(API_TEMPLATE, apiKey, from);
 
         try {
             @SuppressWarnings("unchecked")
